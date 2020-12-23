@@ -75,6 +75,7 @@ GEM
     faraday_middleware (1.0.0)
       faraday (~> 1.0)
     ffi (1.13.1)
+    geocoder (1.6.4)
     gh (0.18.0)
       activesupport (~> 5.0)
       addressable (~> 2.4)
@@ -240,6 +241,7 @@ DEPENDENCIES
   capybara
   factory_bot_rails
   faker
+  geocoder
   graphiql-rails
   graphql
   launchy
