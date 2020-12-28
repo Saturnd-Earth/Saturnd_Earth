@@ -31,23 +31,13 @@ RSpec.describe Like, type: :model do
     it "can increase a post's ring size if like is inside ring" do
       user1 = User.create!(username: "johndoe", password: "123", password_confirmation: '123')
       user2 = User.create!(username: "bobbybones", password: "123", password_confirmation: '123')
-      post = Post.create!(user_id: user1.id, content: "Insert funny joke here.", latitude: 32.6926315, longitude: -97.1486855)
-      like = Like.create!(user_id: user2.id, post_id: post.id, latitude: 39.6930795, longitude: -104.8897193)
-      expect(post.ring_min_max).to eq([0, 1])
-      post.increase_ring
-      like = Like.create!(user_id: user2.id, post_id: post.id, latitude: 39.6930795, longitude: -104.8897193)
-      expect(post.ring_min_max).to eq([1, 2])
-      8.times do 
-        post.increase_ring
-      end
-      like = Like.create!(user_id: user2.id, post_id: post.id, latitude: 39.6930795, longitude: -104.8897193)
-      expect(post.ring_min_max).to eq([256, 512])
-      post.increase_ring
+      Post.create!(user_id: user1.id, content: "Insert funny joke here.", latitude: 32.6926315, longitude: -97.1486855, ring_min_max: 10)
+      post = Post.first
       expect(post.ring_min_max).to eq([512, 1024])
+      # Distance from post coordinates to like coordinates is 647 miles (Denver to Dallas)
       like = Like.create!(user_id: user2.id, post_id: post.id, latitude: 39.6930795, longitude: -104.8897193)
-      expect(post.ring_min_max).to_not eq([512, 1024])
+      post = Post.first
       expect(post.ring_min_max).to eq([1024, 2000])
     end
   end
-  # Geocoder::Calculations.distance_between([32.6926315,-97.1486855], [39.6930795,-104.8897193])
 end
