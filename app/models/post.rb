@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   validates_presence_of :latitude, require: true
   validates_presence_of :longitude, require: true
   belongs_to :user
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liking_users, :through => :likes, :source => :user
 
   enum ring_min_max: [
