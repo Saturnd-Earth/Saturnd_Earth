@@ -26,7 +26,9 @@ gem 'sass-rails', '~> 5.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 gem 'bcrypt'
+
 gem 'graphql', '1.9.17'
+gem 'geocoder'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
