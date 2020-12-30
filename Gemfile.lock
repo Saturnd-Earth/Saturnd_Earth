@@ -89,7 +89,7 @@ GEM
     graphiql-rails (1.7.0)
       railties
       sprockets-rails
-    graphql (1.11.6)
+    graphql (1.9.17)
     highline (2.0.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
@@ -241,9 +241,9 @@ DEPENDENCIES
   capybara
   factory_bot_rails
   faker
+  graphiql-rails (= 1.7.0)
+  graphql (= 1.9.17)
   geocoder
-  graphiql-rails
-  graphql
   launchy
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)

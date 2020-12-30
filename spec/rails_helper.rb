@@ -5,7 +5,6 @@ SimpleCov.start 'rails' do
   add_filter '/channels'
   add_filter '/jobs'
   add_filter '/mailers'
-  add_filter '/app/controllers/application_controller'
 end
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -38,6 +37,22 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+module GraphQLHelpers
+  def controller
+    @controller ||= GraphqlController.new.tap do |obj|
+      obj.set_request! ActionDispatch::Request.new({})
+    end
+  end
+
+  def execute_graphql(query, **kwargs)
+    AppSchema.execute(
+      query,
+      { context: { controller: controller } }.merge(kwargs),
+    )
+  end
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -46,7 +61,9 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  config.include FactoryBot::Syntax::Methods
 
+  config.include GraphQLHelpers, type: :graphql
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
