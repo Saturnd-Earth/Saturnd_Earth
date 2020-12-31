@@ -1,5 +1,6 @@
 module Types
   class QueryType < Types::BaseObject
+
     field :likes, [LikeType], null: false
 
     def likes
@@ -12,6 +13,19 @@ module Types
 
     def like(id:)
       Like.find(id)
+
+    field :users, [UserType], null: false
+
+    def users
+      User.all
+    end
+
+    field :user, UserType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def user(id:)
+      User.find(id)
     end
   end
 end
