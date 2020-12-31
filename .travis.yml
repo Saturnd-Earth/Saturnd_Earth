@@ -4,9 +4,7 @@ rbenv:
 addons:
   postgresql: 12.3
 before_script:
-- bundle exec rake db:create
-- bundle exec rake db:migrate
-- bundle exec rake assets:precompile
+- bundle exec rails db:{create,migrate} RAILS_ENV=test
 deploy:
   provider: heroku
   api_key:
