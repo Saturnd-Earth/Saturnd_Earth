@@ -1,4 +1,9 @@
-like_user = User.create!(username: Faker::Internet.unique.email, password: '12345', password_confirmation: '12345')
+Like.destroy_all
+Post.destroy_all
+User.destroy_all
+
+like_user1 = User.create!(username: Faker::Internet.unique.email, password: '12345', password_confirmation: '12345')
+like_user2 = User.create!(username: Faker::Internet.unique.email, password: '12345', password_confirmation: '12345')
 
 3.times do
   User.create!(username: Faker::Internet.unique.email, password: '12345', password_confirmation: '12345')
@@ -9,7 +14,6 @@ User.all.each do |user|
 end
 
 Post.all.each do |post|
-  2.times do
-    post.likes.create!(user_id: like_user.id, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
-  end
+  post.likes.create!(user_id: like_user1.id, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
+  post.likes.create!(user_id: like_user2.id, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
 end
