@@ -10,7 +10,7 @@ before_script:
 deploy:
   provider: heroku
   api_key:
-    secure: KEY
+    secure: "NQG8bm3ML6TjjbiRcz/uykeiO8W9xScATgAfumgmizNY655X4l29joNodXGPm6k09L1UxCoD+tZGo04I32yxlWto4PKQsKte1usNRWInnjEsBEA5TvIiLm2Xz+29gXtej691vBvrOxhUpRfqsh6FTOBJjBKeIJtMUBcKJZUW5agOs5LgrFHYd8NjxJhjmL0A5cnzo+A5uVxZrZZiLE45W/x7w9czCN8ztKj9D91FJj9eYaaDdonSFePbyT+8y/w7zqTHzb17+2IhqRjFrnP2AAFOi5SZTn7DH2QQ1tV1y2AmpFbBFAsEUN0QJdWRRpfTaqwQm4XJJSsr52shxnFLCHs7HEw9/+nHQsJhHQSIsv+Flk3T/2sgnYZ0hDlX8hB+Em8FdTH7xGIYzKW5YmwZqKel/YER3vathXlTvwqe/cvBXfJeD6u2iuqefXhiqDfI0Y8LkSKic1gQxxxM5tZ9VRbQz7Js+If/Mhyivs8g1tcqTeixF77Ek3TsNjUJRasWq3RkTeuGQ+0hZa79C6xQSrcLl1jBnfy5cYuiNetsurGeK2ZFYids+CKIiRmk7LzaULYN1N2Yag7s+KOqQ3275bPztNsM+oycWDrG3Qgf/Syr3gJjCgPL8jlWTZ2L4GLm5javnV8+iWi/u04gVJcFRQA0wPq+FFx8weMNAcn4uiU="
   app: be-saturnd-earth
   on:
     repo: Saturnd-Earth/se-be
