@@ -1,13 +1,17 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field :likes, [LikeType], null: false
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    def likes
+      Like.all
+    end
+
+    field :like, LikeType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def like(id:)
+      Like.find(id)
     end
   end
 end
