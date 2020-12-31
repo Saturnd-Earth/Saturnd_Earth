@@ -1,0 +1,17 @@
+language: ruby
+rbenv:
+- 2.5.3
+addons:
+  postgresql: 12.3
+script:
+- bundle exec rails db:{create,migrate} RAILS_ENV=test
+deploy:
+  provider: heroku
+  api_key:
+    secure: KEY
+  app: be-saturnd-earth
+  on:
+    repo: Saturnd-Earth/se-be
+    branch: main
+  skip_cleanup: 'true'
+  run: rails db:migrate
