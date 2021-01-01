@@ -1,3 +1,5 @@
+User.destroy_all
+
 like_user = User.create!(username: Faker::Internet.unique.email, password: '12345', password_confirmation: '12345')
 
 3.times do
