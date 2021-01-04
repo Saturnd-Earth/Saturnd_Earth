@@ -5,19 +5,28 @@ module Mutations
     RSpec.describe "EditUser", type: :request do
       describe '.resolve' do
         it 'edits a username' do
-          user = create(:user, password: "password")
+          User.create!(username: "Original", password: "password")
           
-          newName = "Edited Name"
-          post '/graphql', params: { query: editUser(id: user.id, newName: newName) }
+          user = User.last
+          
+          expect(user.username).to eq("Original")
+          
+          post '/graphql', params: { query: editUser(id: user.id) }
+          
+          user = User.last
+          
+          expect(user.username).to eq("testname")
+
         end
       end
     
-      def editUser(id:, newName:)
+      def editUser(id:)
         <<~GQL
         mutation {
           editUser(input:{
             id: #{id}
-            newName: #{newName}
+            username: "testname"
+            password: "password"
           })
           {
             user{
