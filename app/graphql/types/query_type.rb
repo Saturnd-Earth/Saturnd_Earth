@@ -13,7 +13,8 @@ module Types
 
     def like(id:)
       Like.find(id)
-
+    end
+    
     field :users, [UserType], null: false
 
     def users
