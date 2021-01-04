@@ -4,6 +4,6 @@ FactoryBot.define do
     content { "MyText" }
     latitude { 1.5 }
     longitude { 1.5 }
-    min_max { 1 }
+    ring_min_max { 1 }
   end
 end
