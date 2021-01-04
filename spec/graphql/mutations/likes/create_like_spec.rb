@@ -10,9 +10,9 @@ module Mutations
           post = create(:post, user: post_user)
           lat = 38.8409
           lon = -105.0423
-
+          
           expect do
-            post '/graphql', params: { query: create_like(user_id: 88, post_id: 15, latitude: 80.765849, longitude: -92.87357) }
+            post '/graphql', params: { query: create_like(user_id: like_user.id, post_id: post.id, latitude: 80.765849, longitude: -92.87357) }
           end.to change { Like.count }.by(1)
         end
       end
@@ -21,11 +21,13 @@ module Mutations
         <<~GQL
           mutation {
             createLike(input:{
-              user_id: 88
-              post_id: 15
+              userId: #{user_id}
+              postId: #{post_id}
               latitude: 80.765849
               longitude: -92.87357}
-            )
+            ) {
+              clientMutationId
+            }
           }
         GQL
       end

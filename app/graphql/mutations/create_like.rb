@@ -9,7 +9,7 @@ module Mutations
     field :errors, [String], null: false
 
     def resolve(user_id:, post_id:, latitude:, longitude:)
-      like = Like.new!(user_id: user_id, post_id: post_id, latitude: latitude, longitude: longitude)
+      like = Like.new(user_id: user_id, post_id: post_id, latitude: latitude, longitude: longitude)
       if like.save
           {
               like: like,
