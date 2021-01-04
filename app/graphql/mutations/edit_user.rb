@@ -7,9 +7,9 @@ module Mutations
     field :user, Types::UserType, null: false
     field :errors, [String], null: false
     
-    def resolve(id:, username:)
-      binding.pry
-      user = User.new(username: username, password: password)
+    def resolve(id:, username:, password:)
+      user = User.find(id)
+      user.update(username: username, password: password)
       if user.save
           {
               user: user,
