@@ -11,7 +11,7 @@ RSpec.describe Post, type: :model do
   describe "relationships" do
     it {should belong_to :user}
     it {should have_many :likes}
-    it {should have_many(:liking_users).through(:likes)}
+    it {should have_many(:likers).through(:likes)}
   end
 
   describe "creation" do
