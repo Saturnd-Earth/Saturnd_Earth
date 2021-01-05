@@ -44,8 +44,6 @@ module Queries
           data = json['data']['post']
           expect(data['id']).to eq(post1.id.to_s)
           expect(data['content']).to eq(post1.content)
-          expect(data['latitude']).to eq(post1.latitude)
-          expect(data['longitude']).to eq(post1.longitude)
         end
 
         it 'can get all of a users posts' do
