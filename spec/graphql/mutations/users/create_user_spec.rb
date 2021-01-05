@@ -6,29 +6,26 @@ module Mutations
       describe '.resolve' do
         it 'creates a user' do
           user = create(:user, password: "password")
-          expect(User.count).to eq(1)
-          
+
           expect do
             post '/graphql', params: { query: query(username: user.username) }
           end.to change { User.count }.by(1)
-          
-          expect(User.count).to eq(2)
         end
-        
+
         it 'returns a user' do
           user = create(:user, password: "password")
-          
+
           post '/graphql', params: { query: query(username: user.username) }
           json = JSON.parse(response.body)
           data = json['data']['createUser']['user']
-          
+
           expect(data).to include(
             'id'              => be_present,
             'username'        => "Radoslav Stankov",
             )
           end
       end
-    
+
       def query(username:)
         <<~GQL
         mutation {
