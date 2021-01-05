@@ -23,7 +23,21 @@ RSpec.describe Like, type: :model do
       expect(user2.likes).to eq([like])
       expect(user2.liked_posts).to eq([post])
       expect(post.likes).to eq([like])
-      expect(post.liking_users).to eq([user2])
+      expect(post.likers).to eq([user2])
+    end
+  end
+
+  describe "model methods" do
+    it "can increase a post's ring size if like is inside ring" do
+      user1 = User.create!(username: "johndoe", password: "123", password_confirmation: '123')
+      user2 = User.create!(username: "bobbybones", password: "123", password_confirmation: '123')
+      Post.create!(user_id: user1.id, content: "Insert funny joke here.", latitude: 32.6926315, longitude: -97.1486855, ring_min_max: 10)
+      post = Post.first
+      expect(post.ring_min_max).to eq([512, 1024])
+      # Distance from post coordinates to like coordinates is 647 miles (Denver to Dallas)
+      like = Like.create!(user_id: user2.id, post_id: post.id, latitude: 39.6930795, longitude: -104.8897193)
+      post = Post.first
+      expect(post.ring_min_max).to eq([1024, 2000])
     end
   end
 
