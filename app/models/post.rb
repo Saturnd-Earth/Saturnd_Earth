@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   validates_presence_of :longitude, require: true
   belongs_to :user
   has_many :likes, dependent: :destroy
-  has_many :liking_users, :through => :likes, :source => :user
+  has_many :likers, :through => :likes, :source => :user
 
   enum ring_min_max: [
     [0, 1], [1, 2], [2, 4], [4,8],

@@ -23,7 +23,7 @@ RSpec.describe Like, type: :model do
       expect(user2.likes).to eq([like])
       expect(user2.liked_posts).to eq([post])
       expect(post.likes).to eq([like])
-      expect(post.liking_users).to eq([user2])
+      expect(post.likers).to eq([user2])
     end
   end
 
