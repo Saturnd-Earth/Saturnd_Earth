@@ -8,5 +8,8 @@ module Types
     field :likers, [UserType], null: false
     field :ring_min_max, String, null: false
     field :created_at, String, null: false
+    field :url, String, null: false
+    field :post_type, String, null: false
+    
   end
 end
