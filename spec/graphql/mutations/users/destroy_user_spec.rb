@@ -6,7 +6,6 @@ module Mutations
       describe '.resolve' do
         it 'deletes a user' do
           user = create(:user, password: "password")
-
           # Creates a user here
           expect do
             post '/graphql', params: { query: createUser(username: "New User") }
