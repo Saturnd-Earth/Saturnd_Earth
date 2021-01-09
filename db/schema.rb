@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_20_063016) do
+ActiveRecord::Schema.define(version: 2021_01_09_205509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,14 @@ ActiveRecord::Schema.define(version: 2020_12_20_063016) do
 
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id"
-    t.text "content"
+    t.text "text"
     t.float "latitude"
     t.float "longitude"
     t.integer "ring_min_max", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "url"
+    t.string "type"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
