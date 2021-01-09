@@ -6,6 +6,7 @@ module Mutations
       describe '.resolve' do
         it 'creates a post' do
           user = create(:user)
+          # binding.pry
           expect do
             post '/graphql', params: { query: query(user_id: user.id) }
           end.to change { Post.count }.by(1)
@@ -25,7 +26,9 @@ module Mutations
             'longitude'       => -104.8897193,
             'createdAt'       => be_present,
             'userId'          => user.id,
-            'ringMinMax'      => "[0, 1]"
+            'ringMinMax'      => "[0, 1]",
+            'url'             => "url.com",
+            'postType'        => "Link"
           )
         end
 
@@ -37,9 +40,11 @@ module Mutations
             createPost(input:
               {
                 userId: #{user_id},
-                content: "Testy testy test",
-                latitude: 39.6930795,
+                content: "Testy testy test"
+                latitude: 39.6930795
                 longitude: -104.8897193
+                url: "url.com"
+                postType: "Link"
               }
             )
             {
@@ -50,7 +55,9 @@ module Mutations
                 longitude,
                 ringMinMax,
                 createdAt,
-                userId
+                userId,
+                url,
+                postType
               }
             }
           }
