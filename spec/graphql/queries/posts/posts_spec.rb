@@ -25,7 +25,7 @@ module Queries
           expect(data.first['id']).to eq(post1.id.to_s)
           expect(data.last['id']).to eq(post9.id.to_s)
         end
-        
+
         it 'can get a post' do
           user1 = create(:user)
           user2 = create(:user)
@@ -80,6 +80,17 @@ module Queries
               ringMinMax
               createdAt
               userId
+              likers{
+                id
+                username
+               }
+               likes{
+                 id
+                 userId
+                 latitude
+                 longitude
+                 createdAt
+               }
             }
           }
         GQL
@@ -96,6 +107,17 @@ module Queries
               ringMinMax
               createdAt
               userId
+              likers{
+                id
+                username
+               }
+               likes{
+                 id
+                 userId
+                 latitude
+                 longitude
+                 createdAt
+               }
             }
           }
         GQL
@@ -112,6 +134,17 @@ module Queries
               ringMinMax
               createdAt
               userId
+              likers{
+                id
+                username
+               }
+               likes{
+                 id
+                 userId
+                 latitude
+                 longitude
+                 createdAt
+               }
             }
           }
         GQL
