@@ -7,12 +7,10 @@ module Mutations
         it 'edits a post' do
           new_user = create(:user, id: 40)
           new_post = create(:post, user_id: 40, content: "He's left and right handed")
-          require 'pry'; binding.pry
           expect(Post.first.content).to eq("He's left and right handed")
           post '/graphql', params: { query: query(post_id: new_post.id) }
           json = JSON.parse(response.body)
           data = json['data']['editPost']['post']
-          require 'pry'; binding.pry
           expect(Post.first.content).to eq("Jk, he's only right-handed")
         end
 
