@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
-  validates_presence_of :content, require: true
   validates_presence_of :latitude, require: true
   validates_presence_of :longitude, require: true
+  validates_presence_of :text, require: true
+  validates_presence_of :post_type, require: true
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :likers, :through => :likes, :source => :user

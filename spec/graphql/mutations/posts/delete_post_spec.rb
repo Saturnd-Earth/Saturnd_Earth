@@ -24,7 +24,7 @@ module Mutations
             {
               post{
                 id,
-                content,
+                text,
                 latitude,
                 longitude,
                 ringMinMax,

@@ -18,10 +18,10 @@ module Mutations
           post '/graphql', params: { query: query(user_id: user.id) }
           json = JSON.parse(response.body)
           data = json['data']['createPost']['post']
-   
+
           expect(data).to include(
             'id'              => be_present,
-            'content'         => 'Testy testy test',
+            'text'         => 'Testy testy test',
             'latitude'        => 39.6930795,
             'longitude'       => -104.8897193,
             'createdAt'       => be_present,
@@ -40,7 +40,7 @@ module Mutations
             createPost(input:
               {
                 userId: #{user_id},
-                content: "Testy testy test"
+                text: "Testy testy test"
                 latitude: 39.6930795
                 longitude: -104.8897193
                 url: "url.com"
@@ -50,7 +50,7 @@ module Mutations
             {
               post{
                 id,
-                content,
+                text,
                 latitude,
                 longitude,
                 ringMinMax,

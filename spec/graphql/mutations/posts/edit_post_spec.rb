@@ -6,12 +6,12 @@ module Mutations
       describe '.resolve' do
         it 'edits a post' do
           new_user = create(:user, id: 40)
-          new_post = create(:post, user_id: 40, content: "He's left and right handed")
-          expect(Post.first.content).to eq("He's left and right handed")
+          new_post = create(:post, user_id: 40, text: "He's left and right handed", post_type: "Comment")
+          expect(Post.first.text).to eq("He's left and right handed")
           post '/graphql', params: { query: query(post_id: new_post.id) }
           json = JSON.parse(response.body)
           data = json['data']['editPost']['post']
-          expect(Post.first.content).to eq("Jk, he's only right-handed")
+          expect(Post.first.text).to eq("Jk, he's only right-handed")
         end
 
       end
@@ -21,7 +21,7 @@ module Mutations
         mutation{
           editPost(input:{
             id: #{post_id},
-            content: "Jk, he's only right-handed",
+            text: "Jk, he's only right-handed",
             latitude: 71.835532572575,
             longitude: -118.50910685764141,
             userId: 40
@@ -29,7 +29,7 @@ module Mutations
           {
             post {
               id
-              content
+              text
             }
           }
         }
@@ -38,3 +38,4 @@ module Mutations
     end
   end
 end
+
