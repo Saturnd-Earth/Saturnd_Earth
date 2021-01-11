@@ -10,7 +10,7 @@ like_user2 = User.create!(username: Faker::Internet.unique.email, password: '123
 end
 
 User.all.each do |user|
-  user.posts.create!(content: Faker::Quote.unique.most_interesting_man_in_the_world, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
+  user.posts.create!(text: Faker::Quote.unique.most_interesting_man_in_the_world, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, post_type: "Comment")
 end
 
 Post.all.each do |post|

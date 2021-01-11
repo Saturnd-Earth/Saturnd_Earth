@@ -43,7 +43,7 @@ module Queries
           json = JSON.parse(response.body)
           data = json['data']['post']
           expect(data['id']).to eq(post1.id.to_s)
-          expect(data['content']).to eq(post1.content)
+          expect(data['text']).to eq(post1.text)
         end
 
         it 'can get all of a users posts' do
@@ -74,12 +74,13 @@ module Queries
           {
             posts {
               id
-              content
               latitude
               longitude
               ringMinMax
               createdAt
               userId
+              text
+              url
               likers{
                 id
                 username
@@ -101,12 +102,13 @@ module Queries
           {
             post(id: #{post_id}) {
               id
-              content
               latitude
               longitude
               ringMinMax
               createdAt
               userId
+              text
+              url
               likers{
                 id
                 username
@@ -128,12 +130,13 @@ module Queries
           {
             postsByUser(userId: #{user_id}) {
               id
-              content
               latitude
               longitude
               ringMinMax
               createdAt
               userId
+              text
+              url
               likers{
                 id
                 username
