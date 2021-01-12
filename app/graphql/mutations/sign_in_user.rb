@@ -5,22 +5,21 @@ module Mutations
     argument :credentials, Types::AuthProviderCredentialsInput, required: false
 
     field :user, Types::UserType, null: true
-    field :errors, [String], null: false
+    field :errors, String, null: false
     
     def resolve(credentials:)
       # return unless credentials
 
       user = User.find_by username: credentials[:username]
-      binding.pry
-      if user.authenticate(credentials[:password]) == true
+      if user.authenticate(credentials[:password])
         {
           user: user,
           errors: []
         }
-      elsif user.authenticate(credentials[:password]) == false
+      else
         {
           user: nil,
-          errors: "user.errors.full_messages"
+          errors: "Invalid login credentials"
         }
       end
     end
