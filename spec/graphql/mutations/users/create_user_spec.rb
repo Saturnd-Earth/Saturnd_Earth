@@ -5,34 +5,42 @@ module Mutations
     RSpec.describe "CreateUser", type: :request do
       describe '.resolve' do
         it 'creates a user' do
-          user = create(:user, password: "password")
-
           expect do
-            post '/graphql', params: { query: query(username: user.username) }
+            post '/graphql', params: {
+                              query: create_user(credentials: {
+                                                  username: "username@email.com",
+                                                  password: "123456"
+                                                }
+                                              )
+                                            }
           end.to change { User.count }.by(1)
         end
 
         it 'returns a user' do
-          user = create(:user, password: "password")
+          username = "username@email.com"
+          password = "123456"
 
-          post '/graphql', params: { query: query(username: user.username) }
+          post '/graphql', params: { query: create_user(auth_provider: {credentials: {username: user.username, password: user.password}}) }
           json = JSON.parse(response.body)
           data = json['data']['createUser']['user']
 
           expect(data).to include(
             'id'              => be_present,
-            'username'        => "Radoslav Stankov",
+            'username'        => username
             )
           end
       end
 
-      def query(username:)
+      def create_user(credentials:)
         <<~GQL
         mutation {
           createUser(input:{
-            username: "Radoslav Stankov"
-            password: "password123"
-          })
+            credentials: {
+              username: #{credentials&.[](:username)},
+              password: #{credentials&.[](:password)}
+            }
+          }
+        )
           {
             user{
               id
