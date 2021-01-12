@@ -50,5 +50,14 @@ module Types
     def posts_by_user(user_id:)
       User.find(user_id).posts
     end
+
+    field :posts_user_can_increase, [PostType], null: false do
+      argument :latitude, Float, required: true
+      argument :longitude, Float, required: true
+    end
+
+    def posts_user_can_increase(latitude:, longitude:)
+      Post.user_can_increase(latitude, longitude)
+    end
   end
 end
