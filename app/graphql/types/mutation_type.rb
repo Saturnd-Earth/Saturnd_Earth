@@ -8,5 +8,6 @@ module Types
     field :destroy_post, mutation: Mutations::DestroyPost
     field :destroy_user, mutation: Mutations::DestroyUser
     field :edit_user, mutation: Mutations::EditUser
+    field :signin_user, mutation: Mutations::SignInUser
   end
 end
