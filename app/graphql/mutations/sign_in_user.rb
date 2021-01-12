@@ -6,9 +6,8 @@ module Mutations
 
     field :user, Types::UserType, null: true
     field :errors, String, null: false
-    
+        
     def resolve(credentials:)
-      # return unless credentials
 
       user = User.find_by username: credentials[:username]
       if user.authenticate(credentials[:password])
@@ -17,18 +16,9 @@ module Mutations
           errors: []
         }
       else
-        {
-          user: nil,
-          errors: "Invalid login credentials"
-        }
+        GraphQL::ExecutionError.new("Invalid Credentials")
       end
     end
+    
   end
 end
-
-
-
-# binding.pry
-# if !user.nil?
-#   return unless user
-#   return unless user.authenticate(credentials[:password])

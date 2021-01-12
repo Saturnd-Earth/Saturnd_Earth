@@ -38,18 +38,9 @@ module Mutations
                                           }
         
           json = JSON.parse(response.body)
+          data = json['errors'].first['message']
           
-          binding.pry
-          
-
-          
-          
-          data = json['data']['signinUser']['user']
-          
-          expect(data).to include(
-            'id'              => be_present,
-            'username'        => @user.username
-            )
+          expect(data).to eq("Invalid Credentials")
         end
         
       end
