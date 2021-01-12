@@ -3,7 +3,7 @@
 
 insert gif here with demo of how site works
 
-[![Build Status](https://travis-ci.org/Saturnd-Earth/se-be.svg?branch=main)](https://travis-ci.org/github/Saturnd-Earth/se-be
+[![Build Status](https://travis-ci.org/Saturnd-Earth/se-be.svg?branch=main)](https://travis-ci.org/github/Saturnd-Earth/se-be)
 
 ### Jump To
 - [About](#about)
