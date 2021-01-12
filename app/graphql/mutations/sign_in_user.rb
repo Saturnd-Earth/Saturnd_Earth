@@ -5,16 +5,20 @@ module Mutations
     argument :credentials, Types::AuthProviderCredentialsInput, required: false
 
     field :user, Types::UserType, null: true
-
+    field :errors, String, null: false
+        
     def resolve(credentials:)
-      return unless credentials
 
       user = User.find_by username: credentials[:username]
-
-      return unless user
-      return unless user.authenticate(credentials[:password])
-
-      { user: user}
+      if user.authenticate(credentials[:password])
+        {
+          user: user,
+          errors: []
+        }
+      else
+        GraphQL::ExecutionError.new("Invalid Credentials")
+      end
     end
+    
   end
 end
