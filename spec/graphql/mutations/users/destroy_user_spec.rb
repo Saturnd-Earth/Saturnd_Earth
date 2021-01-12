@@ -10,6 +10,10 @@ module Mutations
           expect(User.count).to eq(1)
           post '/graphql', params: { query: destroyUser(id: user.id) }
           expect(User.count).to eq(0)
+
+          json = JSON.parse(response.body)
+          data = json['data']['destroyUser']['user']
+          expect(data).to include('id'=> user.id.to_s)
         end
       end
 
