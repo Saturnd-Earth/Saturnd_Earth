@@ -64,26 +64,6 @@ module Mutations
           }
           GQL
         end
-
-        def create_user(credentials:)
-          <<~GQL
-          mutation {
-            createUser(input:{
-              credentials: {
-                username: "#{credentials&.[](:username)}",
-                password: "#{credentials&.[](:password)}"
-              }
-            }
-          )
-            {
-              user{
-                id
-                username
-              }
-            }
-          }
-          GQL
-        end
       end
     end
   end
