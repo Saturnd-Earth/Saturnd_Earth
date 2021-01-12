@@ -5,11 +5,13 @@ module Mutations
     RSpec.describe "CreateUser", type: :request do
       describe '.resolve' do
         it 'creates a user' do
+          username = "username@email.com"
+          password = "123456"
           expect do
             post '/graphql', params: {
                               query: create_user(credentials: {
-                                                  username: "username@email.com",
-                                                  password: "123456"
+                                                  username: username,
+                                                  password: password
                                                 }
                                               )
                                             }
@@ -20,7 +22,13 @@ module Mutations
           username = "username@email.com"
           password = "123456"
 
-          post '/graphql', params: { query: create_user(auth_provider: {credentials: {username: user.username, password: user.password}}) }
+          post '/graphql', params: {
+                            query: create_user(credentials: {
+                                                  username: username,
+                                                  password: password
+                                                }
+                                              )
+                                            }
           json = JSON.parse(response.body)
           data = json['data']['createUser']['user']
 
@@ -36,8 +44,8 @@ module Mutations
         mutation {
           createUser(input:{
             credentials: {
-              username: #{credentials&.[](:username)},
-              password: #{credentials&.[](:password)}
+              username: "#{credentials&.[](:username)}",
+              password: "#{credentials&.[](:password)}"
             }
           }
         )
