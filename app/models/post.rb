@@ -16,7 +16,9 @@ class Post < ApplicationRecord
   ]
 
   def increase_ring
-    update_column(:ring_min_max, Post.ring_min_maxes[ring_min_max] + 1)
+    unless Post.ring_min_maxes[ring_min_max] == 16
+      update_column(:ring_min_max, Post.ring_min_maxes[ring_min_max] + 1)
+    end
   end
 
   def self.user_can_increase(user_latitude, user_longitude)
