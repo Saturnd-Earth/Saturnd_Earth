@@ -4,6 +4,8 @@
 insert gif here with demo of how site works
 
 [![Build Status](https://travis-ci.org/Saturnd-Earth/se-be.svg?branch=main)](https://travis-ci.org/github/Saturnd-Earth/se-be)
+![](https://img.shields.io/badge/Ruby-2.5.3-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Rails-5.2.4.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
 
 ### Jump To
 - [About](#about)
@@ -20,8 +22,6 @@ insert gif here with demo of how site works
 - [Roadmap](#roadmap)
 
 ## About
-
-
 This repo is the back-end service for Saturn'd Earth and is consumed by our front-end application. The front-end GitHub repo can be found [here](https://github.com/Saturnd-Earth/se-fe) and the deployed site [here](insert FE link).
 
 ## Contributors
@@ -35,32 +35,29 @@ This repo is the back-end service for Saturn'd Earth and is consumed by our fron
   - Chris Castanuela | [GitHub](https://github.com/Chriscastanuela) | [LinkedIn](https://www.linkedin.com/in/christopher-castanuela/) |
 
 ## Setup
-- Rails setup instructions. Maybe include link on how to set up environment.
+- Prerequisites
+  - Ruby 2.5.x
+  - Rails 5.2.4.4
+  - GraphQL
+  - PostgreSQL
 - Clone repo: `git clone git@github.com:Saturnd-Earth/se-be.git`
-- Virtual Environment Setup:
-- Install gems:
-- Set up local databases
+- Virtual Environment Setup: `bundle install` then `bundle update`
+- Set up local databases:
+  - First, cd into cloned repo
   ```shell
-  # creates your dev database
-  # creates your test database
-  # connects you to your dev database in order to run the following commands
-  # generates new migration files from any changes made to models.py
-  # runs migrations on your dev database
-  # seed data in dev database
-  # connects you to your test database in order to run the following commands
-  # runs migrations on your test database
+    `rails db: create`# creates your test & dev database
+    `rails db:{migrate}` # generates new migration files and creates schema found in app/db folder
+    `rails db:{seed}` # seeds data in dev database
   ```
-- `rails s` to run server on `localhost:3000`
+- `rails s` to run server on `localhost:3000/graphiql`
 
 ## CLI commands
-- `$ rails db:{drop,create,migrate,seed}` drops all tables, creates all tables, and seeds whichever database is currently set to `DATABASE_URL` environment variable.
+- `$ rails db:{drop,create,migrate,seed}` drops database, creates new database, and seeds dev database.
+- `rails c` to access ActiveRecord query interface
 
 ## Testing
 - Run tests with coverage report: `bundle exec rspec`
-  - See browser-based coverage report
-    ```
-    coverage report command here
-    ```
+- See browser-based coverage report: `open coverage/index.html`
 
 ## Database Schema
 ![image]()
