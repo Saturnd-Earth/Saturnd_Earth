@@ -9,7 +9,7 @@ module Mutations
           password = "123456"
           expect do
             post '/graphql', params: {
-                              query: create_user(credentials: {
+                              query: createUser(credentials: {
                                                   username: username,
                                                   password: password
                                                 }
@@ -23,7 +23,7 @@ module Mutations
           password = "123456"
 
           post '/graphql', params: {
-                            query: create_user(credentials: {
+                            query: createUser(credentials: {
                                                   username: username,
                                                   password: password
                                                 }
@@ -36,16 +36,53 @@ module Mutations
             'id'              => be_present,
             'username'        => username
             )
-          end
+        end
+        
+        it 'returns an error if either username or password is invalid' do
+          username = "username@email.com"
+          password = "123456"
+          post '/graphql', params: {
+                            query: badCreateUser(credentials: {
+                                                username: username,
+                                                password: password
+                                              }
+                                            )
+                                          }
+                                          
+          json = JSON.parse(response.body)
+          data = json['errors'].first['message']
+
+          expect(data).to eq("Invalid Username or Password")
+        end
       end
 
-      def create_user(credentials:)
+      def createUser(credentials:)
         <<~GQL
         mutation {
           createUser(input:{
             credentials: {
               username: "#{credentials&.[](:username)}",
               password: "#{credentials&.[](:password)}"
+            }
+          }
+        )
+          {
+            user{
+              id
+              username
+            }
+          }
+        }
+        GQL
+      end
+      
+      def badCreateUser(credentials:)
+        <<~GQL
+        mutation {
+          createUser(input:{
+            credentials: {
+              username: "#{credentials&.[](:username)}",
+              password: "#{credentials&.[](1)}"
             }
           }
         )
