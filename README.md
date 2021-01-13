@@ -64,7 +64,7 @@ This repo is the back-end service for Saturn'd Earth and is consumed by our fron
 
 ## Endpoint Documentation
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c6bb506040a84336a8e8)
-###### Base URL: Use `localhost:3000` to explore endpoints with local server and `be-saturnd-earth.herokuapp.com/` to explore the endpoints via the live Heroku app
+Base URL: Use `localhost:3000/graphiql` to explore endpoints with local server and `be-saturnd-earth.herokuapp.com/` to explore the endpoints via the live Heroku app
 
 ### Users
 ###### Request:
