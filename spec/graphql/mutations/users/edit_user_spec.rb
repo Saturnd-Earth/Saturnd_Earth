@@ -18,6 +18,21 @@ module Mutations
           expect(user.username).to eq("testname")
 
         end
+        
+        it 'returns an error message when edit is invalid' do
+          User.create!(username: "Original", password: "password")
+          
+          user = User.last
+          
+          expect(user.username).to eq("Original")
+          
+          post '/graphql', params: { query: badEditUser(id: user.id) }
+          
+          json = JSON.parse(response.body)
+          data = json['errors'].first['message']
+          
+          expect(data).to eq("Invalid Username or Password")
+        end
       end
     
       def editUser(id:)
@@ -27,6 +42,24 @@ module Mutations
             id: #{id}
             username: "testname"
             password: "password"
+          })
+          {
+            user{
+              id
+              username
+            }
+          }
+        }
+        GQL
+      end
+      
+      def badEditUser(id:)
+        <<~GQL
+        mutation {
+          editUser(input:{
+            id: #{id}
+            username: "testname"
+            password: ""
           })
           {
             user{
