@@ -2,7 +2,7 @@ module Mutations
   class EditUser < BaseMutation
     argument :id, ID, required: true
     argument :username, String, required: true
-    argument :password, String, required: false
+    argument :password, String, required: true
     
     field :user, Types::UserType, null: false
     field :errors, [String], null: false
