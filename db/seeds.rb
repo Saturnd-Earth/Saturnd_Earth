@@ -28,13 +28,13 @@ end
   puts "#{num} United States posts created!"
 end
 
-600.times do |num|
+250.times do |num|
   user = User.order('RANDOM()').first
-  user.posts.create!(text: Faker::Quote.most_interesting_man_in_the_world, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, post_type: "Comment")
+  user.posts.create!(text: Faker::Quote.most_interesting_man_in_the_world, latitude: rand(-50.000000..70.000000), longitude: rand(-178.000000..178.000000), post_type: "Comment")
   puts "#{num} random posts created!"
 end
 
-5000.times do |num|
+2800.times do |num|
   post = Post.order('RANDOM()').first
   post.increase_ring
   puts "#{num} increased rings!"
