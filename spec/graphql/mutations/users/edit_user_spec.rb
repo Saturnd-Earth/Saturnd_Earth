@@ -31,8 +31,7 @@ module Mutations
           json = JSON.parse(response.body)
           data = json['errors'].first['message']
           
-          expect(data).to eq("Argument 'password' on InputObject 'EditUserInput' has an invalid value. Expected type 'String!'.")
-
+          expect(data).to eq("Invalid Username or Password")
         end
       end
     
@@ -60,7 +59,7 @@ module Mutations
           editUser(input:{
             id: #{id}
             username: "testname"
-            password: 1
+            password: ""
           })
           {
             user{
