@@ -44,11 +44,9 @@ This repo is the back-end service for Saturn'd Earth and is consumed by our fron
 - Virtual Environment Setup: `bundle install` then `bundle update`
 - Set up local databases:
   - First, cd into cloned repo
-  ```shell
-    `rails db: create`# creates your test & dev database
-    `rails db:{migrate}` # generates new migration files and creates schema found in app/db folder
-    `rails db:{seed}` # seeds data in dev database
-  ```
+  - `rails db:create` creates your test & dev database
+  - `rails db:migrate` generates new migration files and creates schema found in app/db folder
+  - `rails db:seed` seeds data in dev database
 - `rails s` to run server on `localhost:3000/graphiql`
 
 ## CLI commands
@@ -63,11 +61,13 @@ This repo is the back-end service for Saturn'd Earth and is consumed by our fron
 ![Sat-Earth-Schema](https://user-images.githubusercontent.com/56651612/104521131-8e524880-55b9-11eb-8b48-da038cabf4a0.png)
 
 ## Endpoint Documentation
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c6bb506040a84336a8e8)
-Base URL: Use `localhost:3000/graphiql` to explore endpoints with local server and `be-saturnd-earth.herokuapp.com/` to explore the endpoints via the live Heroku app
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c6bb506040a84336a8e8)   
+Base URL:   
+- `localhost:3000/graphiql` to explore endpoints with local server
+- `be-saturnd-earth.herokuapp.com/` to explore the endpoints via the live Heroku app
 
 ### Users
-###### Request:
+##### Request: All Users
 ```
 query {
     users{
@@ -76,7 +76,7 @@ query {
     }
 }
 ```
-###### Response: Returns all users
+##### Response:
   ```JSON
   {
     "data": {
@@ -106,8 +106,7 @@ query {
 }
   ```
 
-#### User
-###### Request:
+##### Request: User Search By ID
 ```
 query(id: 19) {
     users{
@@ -116,7 +115,7 @@ query(id: 19) {
     }
 }
 ```
-###### Response: Returns username and user id
+##### Response:
   ```JSON
   {
     "data": {
