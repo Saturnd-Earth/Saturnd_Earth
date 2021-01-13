@@ -4,12 +4,16 @@ module Types
     field :likes, [LikeType], null: false
 
     def likes
-      Like.all
+      likes = <<-SQL
+        SELECT * FROM likes;
+      SQL
+      ActiveRecord::Base.connection.exec_query(likes)
     end
 
     field :like, LikeType, null: false do
       argument :id, ID, required: true
     end
+
 
     def like(id:)
       Like.find(id)
@@ -32,7 +36,10 @@ module Types
     field :posts, [PostType], null: false
 
     def posts
-      Post.all
+      posts = <<-SQL
+        SELECT * FROM posts;
+      SQL
+      ActiveRecord::Base.connection.exec_query(posts)
     end
 
     field :post, PostType, null: false do
