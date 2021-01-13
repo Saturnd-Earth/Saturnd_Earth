@@ -12,11 +12,11 @@ class Post < ApplicationRecord
     [8, 16], [16, 32], [32, 64], [64, 128],
     [128, 256], [256, 512], [512, 1024],
     [1024, 2000], [2000, 4000], [4000, 6000],
-    [6000, 8000], [8000, 10000], [10000, 12500]
+    [6000, 8000], [8000, 10000], [10000, 12500], "Completed"
   ]
 
   def increase_ring
-    unless Post.ring_min_maxes[ring_min_max] == 16
+    unless Post.ring_min_maxes[ring_min_max] == 17
       update_column(:ring_min_max, Post.ring_min_maxes[ring_min_max] + 1)
     end
   end
