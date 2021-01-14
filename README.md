@@ -1,8 +1,6 @@
 # Saturn'd Earth - Backend API in Rails
 
 
-insert gif here with demo of how site works
-
 [![Build Status](https://travis-ci.org/Saturnd-Earth/se-be.svg?branch=main)](https://travis-ci.org/github/Saturnd-Earth/se-be)
 ![](https://img.shields.io/badge/Ruby-2.5.3-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Rails-5.2.4.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
