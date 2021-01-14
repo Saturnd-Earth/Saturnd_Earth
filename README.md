@@ -22,15 +22,15 @@ insert gif here with demo of how site works
 - [Roadmap](#roadmap)
 
 ## About
-This repo is the back-end service for Saturn'd Earth and is consumed by our front-end application. The front-end GitHub repo can be found [here](https://github.com/Saturnd-Earth/se-fe) and the deployed site [here](insert FE link).
+This repo is the back-end service for Saturn'd Earth and is consumed by our front-end application. The front-end GitHub repo can be found [here](https://github.com/Saturnd-Earth/se-fe) and the deployed site [here](https://saturnd-earth.github.io/se-fe/).
 
 ## Contributors
 - Back-End Team:
   - Alex Desjardins | [GitHub](https://github.com/moosehandlr) | [LinkedIn](https://www.linkedin.com/in/alex-desjardins-59297b8b/) | ardesjardins91@gmail.com
   - Garret Gerdsen | [GitHub](https://github.com/ggerdsen) | [LinkedIn](https://www.linkedin.com/in/ggerdsen/) | garrett.gerdsen@gmail.com
-  - Drew Williams | [GitHub](https://github.com/drewwilliams5280) | [LinkedIn](https://www.linkedin.com/in/drewwilliams5280/) |
+  - Drew Williams | [GitHub](https://github.com/drewwilliams5280) | [LinkedIn](https://www.linkedin.com/in/drewwilliams5280/) | drewwilliams5280@gmail.com
 - Front-End Team:
-  - Matthew Lane | [GitHub](https://github.com/GreyMatteOr) | [LinkedIn](https://www.linkedin.com/in/themplane/) |
+  - Matthew Lane | [GitHub](https://github.com/GreyMatteOr) | [LinkedIn](https://www.linkedin.com/in/themplane/) | 
   - Michael Walker | [GitHub](https://github.com/MichaelEWalker87) | [LinkedIn](https://www.linkedin.com/in/michael-walker-719471141/) |
   - Chris Castanuela | [GitHub](https://github.com/Chriscastanuela) | [LinkedIn](https://www.linkedin.com/in/christopher-castanuela/) |
 
