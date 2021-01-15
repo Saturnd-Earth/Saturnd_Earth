@@ -2,9 +2,6 @@ Like.destroy_all
 Post.destroy_all
 User.destroy_all
 
-like_user1 = User.create!(username: Faker::Internet.unique.email, password: '12345', password_confirmation: '12345')
-like_user2 = User.create!(username: Faker::Internet.unique.email, password: '12345', password_confirmation: '12345')
-
 25.times do |num|
   User.create!(username: Faker::Internet.unique.email, password: '12345', password_confirmation: '12345')
   puts "#{num} users created!"
@@ -64,14 +61,15 @@ end
   puts "#{num} Australian posts created!"
 end
 
-3000.times do |num|
+2600.times do |num|
   post = Post.order('RANDOM()').first
   post.increase_ring
   puts "#{num} increased rings!"
 end
 
 Post.all.each do |post|
-  post.likes.create!(user_id: like_user1.id, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
-  post.likes.create!(user_id: like_user2.id, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
-  puts "Likes created for post #{post.id}!"
+  User.all.each do |user|
+    post.likes.create!(user_id: user.id, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
+    puts "Like created for post #{post.id} by #{user.id}!"
+  end
 end
