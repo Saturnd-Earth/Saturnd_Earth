@@ -5,6 +5,12 @@ SimpleCov.start 'rails' do
   add_filter '/channels'
   add_filter '/jobs'
   add_filter '/mailers'
+  add_filter '/graphql/types/base_enum.rb'
+  add_filter '/graphql/types/base_input_object.rb'
+  add_filter '/graphql/types/base_interface.rb'
+  add_filter '/graphql/types/base_scalar.rb'
+  add_filter '/graphql/types/base_union.rb'
+  add_filter '/controllers/graphql_controller.rb'
 end
 
 ENV['RAILS_ENV'] ||= 'test'

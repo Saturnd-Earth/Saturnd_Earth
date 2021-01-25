@@ -11,16 +11,14 @@ module Mutations
         username: credentials&.[](:username),
         password: credentials&.[](:password)
       )
+
       if user.save
           {
               user: user,
               errors: []
           }
       else
-          {
-              user: nil,
-              errors: user.errors.full_messages
-          }
+        GraphQL::ExecutionError.new("Invalid Username or Password")
       end
     end
   end

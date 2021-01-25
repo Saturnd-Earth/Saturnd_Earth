@@ -2,7 +2,7 @@ module Mutations
   class EditUser < BaseMutation
     argument :id, ID, required: true
     argument :username, String, required: true
-    argument :password, String, required: false
+    argument :password, String, required: true
     
     field :user, Types::UserType, null: false
     field :errors, [String], null: false
@@ -16,10 +16,7 @@ module Mutations
               errors: []
           }
       else
-          {
-              user: nil,
-              errors: user.errors.full_messages
-          }
+          GraphQL::ExecutionError.new("Invalid Username or Password")
       end
     end
   end

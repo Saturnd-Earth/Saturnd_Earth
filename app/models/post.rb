@@ -16,6 +16,15 @@ class Post < ApplicationRecord
   ]
 
   def increase_ring
-    update_column(:ring_min_max, Post.ring_min_maxes[ring_min_max] + 1)
+    unless Post.ring_min_maxes[ring_min_max] == 16
+      update_column(:ring_min_max, Post.ring_min_maxes[ring_min_max] + 1)
+    end
+  end
+
+  def self.user_can_increase(user_latitude, user_longitude)
+    all.find_all do |post|
+      distance = Geocoder::Calculations.distance_between([post.latitude, post.longitude], [user_latitude, user_longitude])
+      post.ring_min_max[0] < distance && post.ring_min_max[1] > distance
+    end
   end
 end

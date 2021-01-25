@@ -6,7 +6,6 @@ module Mutations
       describe '.resolve' do
         it 'creates a post' do
           user = create(:user)
-          # binding.pry
           expect do
             post '/graphql', params: { query: query(user_id: user.id) }
           end.to change { Post.count }.by(1)
