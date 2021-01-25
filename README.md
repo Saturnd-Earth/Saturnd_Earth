@@ -1,8 +1,5 @@
 # Saturn'd Earth - Backend API in Rails
 
-
-insert gif here with demo of how site works
-
 [![Build Status](https://travis-ci.org/Saturnd-Earth/se-be.svg?branch=main)](https://travis-ci.org/github/Saturnd-Earth/se-be)
 ![](https://img.shields.io/badge/Ruby-2.5.3-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Rails-5.2.4.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
@@ -14,12 +11,10 @@ insert gif here with demo of how site works
 - [CLI Commands](#cli-commands)
 - [Testing](#testing)
 - [Database Schema](#database-schema)
-- [Endpoint Documentation](#endpoint-documentation)
-  - [Users](#users)
-  - [Posts](#posts)
-  - [Likes](#likes)
+- [Endpoint Documentation](#graphql-endpoint-documentation)
+  - [Users](#user-queries)
+  - [Posts](#post-queries)
 - [Technologies](#technologies)
-- [Roadmap](#roadmap)
 
 ## About
 This repo is the back-end service for Saturn'd Earth and is consumed by our front-end application. The front-end GitHub repo can be found [here](https://github.com/Saturnd-Earth/se-fe) and the deployed site [here](https://saturnd-earth.github.io/se-fe/).
@@ -293,3 +288,4 @@ mutation {
 - PostgreSQL
 - RSpec
 - TravisCI
+- Heroku
