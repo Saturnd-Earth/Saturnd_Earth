@@ -60,81 +60,136 @@ This repo is the back-end service for Saturn'd Earth and is consumed by our fron
 ## Database Schema
 ![Sat-Earth-Schema](https://user-images.githubusercontent.com/56651612/104521131-8e524880-55b9-11eb-8b48-da038cabf4a0.png)
 
-## Endpoint Documentation
+## GraphQL Endpoint Documentation
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c6bb506040a84336a8e8)   
 Base URL:   
 - `localhost:3000/graphiql` to explore endpoints with local server
-- `be-saturnd-earth.herokuapp.com/` to explore the endpoints via the live Heroku app
+- `be-saturnd-earth.herokuapp.com/` to explore the endpoints via the live Heroku app on Postman
 
-### Users
-##### Request: All Users
+### User Queries
 ```
+#All Users
 query {
-    users{
-        id,
-        username
-    }
+  users{
+    id,
+    username
+  }
 }
-```
-##### Response:
-  ```JSON
-  {
-    "data": {
-        "users": [
-            {
-                "id": "19",
-                "username": "nicolas.boyle@harvey-mcglynn.biz"
-            },
-            {
-                "id": "20",
-                "username": "vannesa@fay.io"
-            },
-            {
-                "id": "21",
-                "username": "grady.hegmann@kohler.co"
-            },
-            {
-                "id": "22",
-                "username": "deborah@shields.org"
-            },
-            {
-                "id": "23",
-                "username": "deann@schamberger-kreiger.name"
-            }
-        ]
-    }
-}
-  ```
 
-##### Request: User Search By ID
-```
+#User By ID
 query(id: 19) {
-    users{
-        id,
-        username
-    }
+  users{
+    id,
+    username
+  }
 }
 ```
-##### Response:
-  ```JSON
-  {
-    "data": {
-        "user": {
-            "id": "19",
-            "username": "nicolas.boyle@harvey-mcglynn.biz"
+
+### User Mutations
+```
+# Create User
+mutation {
+  createUser(input:{
+      credentials: {
+        username: "some_username",
+        password: "some_password"
         }
     }
+  )
+  {
+    user{
+      id
+      username
+    }
+  }
 }
-  ```
 
-### Posts
-###### Request: query
-###### Response:
+#Edit User
+mutation {
+  editUser(input:{
+    id: 31
+    username: "new_username"
+    password: "new_password"
+    }
+  )
+    {
+    user{
+      id
+      username
+    }
+  }
+}
 
+#Destroy User
+mutation {
+  destroyUser(input:{
+    id: 20
+  }){
+    user{
+      id
+      username
+    }
+  }
+}
+```
 
-### Likes
-###### Request: query
-###### Response:
+### Post Queries
+###### All Posts
+```
+query {
+  posts {
+    id
+    latitude
+    longitude
+    ringMinMax
+    createdAt
+    userId
+    text
+    url
+    likers{
+      id
+      username
+     }
+    likes{
+     id
+     userId
+     latitude
+     longitude
+     createdAt
+     }
+  }
+}
+```
+
+###### Post By ID
+```
+query {
+  post(id: 4597) {
+    id
+    latitude
+    longitude
+    ringMinMax
+    createdAt
+    userId
+    text
+    url
+    likers{
+      id
+      username
+     }
+    likes{
+     id
+     userId
+     latitude
+     longitude
+     createdAt
+     }
+  }
+}
+```
+
+### Like Queries
+######
 
 ## Technologies
 - Ruby
@@ -143,5 +198,3 @@ query(id: 19) {
 - PostgreSQL
 - RSpec
 - TravisCI
-
-## Roadmap
