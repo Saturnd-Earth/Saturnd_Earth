@@ -67,16 +67,18 @@ Base URL:
 - `be-saturnd-earth.herokuapp.com/` to explore the endpoints via the live Heroku app on Postman
 
 ### User Queries
+###### All Users:
 ```
-#All Users
 query {
   users{
     id,
     username
   }
 }
+```
 
-#User By ID
+##### User By ID:
+```
 query(id: 19) {
   users{
     id,
