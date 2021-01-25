@@ -77,9 +77,9 @@ query {
 }
 ```
 
-##### User By ID:
+###### User By ID:
 ```
-query(id: 19) {
+query(id: ID) {
   users{
     id,
     username
@@ -88,8 +88,8 @@ query(id: 19) {
 ```
 
 ### User Mutations
+###### Create User
 ```
-# Create User
 mutation {
   createUser(input:{
       credentials: {
@@ -105,11 +105,12 @@ mutation {
     }
   }
 }
-
-#Edit User
+```
+######Edit User
+```
 mutation {
   editUser(input:{
-    id: 31
+    id: ID
     username: "new_username"
     password: "new_password"
     }
@@ -121,11 +122,12 @@ mutation {
     }
   }
 }
-
-#Destroy User
+```
+######Destroy User
+```
 mutation {
   destroyUser(input:{
-    id: 20
+    id: ID
   }){
     user{
       id
@@ -166,7 +168,7 @@ query {
 ###### Post By ID
 ```
 query {
-  post(id: 4597) {
+  post(id: ID) {
     id
     latitude
     longitude
@@ -190,8 +192,99 @@ query {
 }
 ```
 
-### Like Queries
-######
+###### Posts By User
+```
+query {
+  postsByUser(userId: ID){
+    id
+    latitude
+    longitude
+    ringMinMax
+    createdAt
+    userId
+    text
+    url
+    likes{
+      id
+      userId
+      latitude
+      longitude
+      createdAt
+    }
+  }
+}
+```
+
+### Post Mutations
+###### Create Post
+```
+mutation {
+  createPost(input:
+    {
+      userId: ID,
+      text: "Testy testy test"
+      latitude: 39.6930795
+      longitude: -104.8897193
+      url: "url.com"
+      postType: "Link"
+    }
+  )
+  {
+    post{
+      id,
+      text,
+      latitude,
+      longitude,
+      ringMinMax,
+      createdAt,
+      userId,
+      url,
+      postType
+    }
+  }
+}
+```
+
+###### Edit Post
+```
+mutation{
+  editPost(input:{
+    id: ID,
+    text: "Jk, he's only right-handed",
+    latitude: 71.835532572575,
+    longitude: -118.50910685764141,
+    userId: 40
+  })
+  {
+    post {
+      id
+      text
+    }
+  }
+}
+```
+
+###### Destroy Post
+```
+mutation {
+  destroyPost(input:
+    {
+      id: ID,
+    }
+  )
+  {
+    post{
+      id,
+      text,
+      latitude,
+      longitude,
+      ringMinMax,
+      createdAt,
+      userId
+    }
+  }
+}
+```
 
 ## Technologies
 - Ruby
