@@ -1,6 +1,5 @@
 # Saturn'd Earth - Backend API in Rails
 
-
 [![Build Status](https://travis-ci.org/Saturnd-Earth/se-be.svg?branch=main)](https://travis-ci.org/github/Saturnd-Earth/se-be)
 ![](https://img.shields.io/badge/Ruby-2.5.3-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Rails-5.2.4.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a)
@@ -12,12 +11,10 @@
 - [CLI Commands](#cli-commands)
 - [Testing](#testing)
 - [Database Schema](#database-schema)
-- [Endpoint Documentation](#endpoint-documentation)
-  - [Users](#users)
-  - [Posts](#posts)
-  - [Likes](#likes)
+- [Endpoint Documentation](#graphql-endpoint-documentation)
+  - [Users](#user-queries)
+  - [Posts](#post-queries)
 - [Technologies](#technologies)
-- [Roadmap](#roadmap)
 
 ## About
 This repo is the back-end service for Saturn'd Earth and is consumed by our front-end application. The front-end GitHub repo can be found [here](https://github.com/Saturnd-Earth/se-fe) and the deployed site [here](https://saturnd-earth.github.io/se-fe/).
@@ -28,9 +25,9 @@ This repo is the back-end service for Saturn'd Earth and is consumed by our fron
   - Garret Gerdsen | [GitHub](https://github.com/ggerdsen) | [LinkedIn](https://www.linkedin.com/in/ggerdsen/) | garrett.gerdsen@gmail.com
   - Drew Williams | [GitHub](https://github.com/drewwilliams5280) | [LinkedIn](https://www.linkedin.com/in/drewwilliams5280/) | drewwilliams5280@gmail.com
 - Front-End Team:
-  - Matthew Lane | [GitHub](https://github.com/GreyMatteOr) | [LinkedIn](https://www.linkedin.com/in/themplane/) | 
-  - Michael Walker | [GitHub](https://github.com/MichaelEWalker87) | [LinkedIn](https://www.linkedin.com/in/michael-walker-719471141/) |
-  - Chris Castanuela | [GitHub](https://github.com/Chriscastanuela) | [LinkedIn](https://www.linkedin.com/in/christopher-castanuela/) |
+  - Matthew Lane | [GitHub](https://github.com/GreyMatteOr) | [LinkedIn](https://www.linkedin.com/in/themplane/) | themplane@gmail.com
+  - Michael Walker | [GitHub](https://github.com/MichaelEWalker87) | [LinkedIn](https://www.linkedin.com/in/michael-walker-719471141/) | chriscastanuela@gmail.com
+  - Chris Castanuela | [GitHub](https://github.com/Chriscastanuela) | [LinkedIn](https://www.linkedin.com/in/christopher-castanuela/) | Michael.E.Walker.87@gmail.com
 
 ## Setup
 - Prerequisites
@@ -58,81 +55,231 @@ This repo is the back-end service for Saturn'd Earth and is consumed by our fron
 ## Database Schema
 ![Sat-Earth-Schema](https://user-images.githubusercontent.com/56651612/104521131-8e524880-55b9-11eb-8b48-da038cabf4a0.png)
 
-## Endpoint Documentation
+## GraphQL Endpoint Documentation
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c6bb506040a84336a8e8)   
 Base URL:   
 - `localhost:3000/graphiql` to explore endpoints with local server
-- `be-saturnd-earth.herokuapp.com/` to explore the endpoints via the live Heroku app
+- `be-saturnd-earth.herokuapp.com/` to explore the endpoints via the live Heroku app on Postman
 
-### Users
-##### Request: All Users
+### User Queries
+###### All Users:
 ```
 query {
-    users{
-        id,
-        username
-    }
+  users{
+    id,
+    username
+  }
 }
 ```
-##### Response:
-  ```JSON
-  {
-    "data": {
-        "users": [
-            {
-                "id": "19",
-                "username": "nicolas.boyle@harvey-mcglynn.biz"
-            },
-            {
-                "id": "20",
-                "username": "vannesa@fay.io"
-            },
-            {
-                "id": "21",
-                "username": "grady.hegmann@kohler.co"
-            },
-            {
-                "id": "22",
-                "username": "deborah@shields.org"
-            },
-            {
-                "id": "23",
-                "username": "deann@schamberger-kreiger.name"
-            }
-        ]
-    }
-}
-  ```
 
-##### Request: User Search By ID
+###### User By ID:
 ```
-query(id: 19) {
-    users{
-        id,
-        username
-    }
+query(id: ID) {
+  users{
+    id,
+    username
+  }
 }
 ```
-##### Response:
-  ```JSON
-  {
-    "data": {
-        "user": {
-            "id": "19",
-            "username": "nicolas.boyle@harvey-mcglynn.biz"
+
+### User Mutations
+###### Create User
+```
+mutation {
+  createUser(input:{
+      credentials: {
+        username: "some_username",
+        password: "some_password"
         }
     }
+  )
+  {
+    user{
+      id
+      username
+    }
+  }
 }
-  ```
+```
+###### Edit User
+```
+mutation {
+  editUser(input:{
+    id: ID
+    username: "new_username"
+    password: "new_password"
+    }
+  )
+    {
+    user{
+      id
+      username
+    }
+  }
+}
+```
+###### Destroy User
+```
+mutation {
+  destroyUser(input:{
+    id: ID
+  }){
+    user{
+      id
+      username
+    }
+  }
+}
+```
 
-### Posts
-###### Request: query
-###### Response:
+### Post Queries
+###### All Posts
+```
+query {
+  posts {
+    id
+    latitude
+    longitude
+    ringMinMax
+    createdAt
+    userId
+    text
+    url
+    likers{
+      id
+      username
+     }
+    likes{
+     id
+     userId
+     latitude
+     longitude
+     createdAt
+     }
+  }
+}
+```
 
+###### Post By ID
+```
+query {
+  post(id: ID) {
+    id
+    latitude
+    longitude
+    ringMinMax
+    createdAt
+    userId
+    text
+    url
+    likers{
+      id
+      username
+     }
+    likes{
+     id
+     userId
+     latitude
+     longitude
+     createdAt
+     }
+  }
+}
+```
 
-### Likes
-###### Request: query
-###### Response:
+###### Posts By User
+```
+query {
+  postsByUser(userId: ID){
+    id
+    latitude
+    longitude
+    ringMinMax
+    createdAt
+    userId
+    text
+    url
+    likes{
+      id
+      userId
+      latitude
+      longitude
+      createdAt
+    }
+  }
+}
+```
+
+### Post Mutations
+###### Create Post
+```
+mutation {
+  createPost(input:
+    {
+      userId: ID,
+      text: "Testy testy test"
+      latitude: 39.6930795
+      longitude: -104.8897193
+      url: "url.com"
+      postType: "Link"
+    }
+  )
+  {
+    post{
+      id,
+      text,
+      latitude,
+      longitude,
+      ringMinMax,
+      createdAt,
+      userId,
+      url,
+      postType
+    }
+  }
+}
+```
+
+###### Edit Post
+```
+mutation{
+  editPost(input:{
+    id: ID,
+    text: "Jk, he's only right-handed",
+    latitude: 71.835532572575,
+    longitude: -118.50910685764141,
+    userId: 40
+  })
+  {
+    post {
+      id
+      text
+    }
+  }
+}
+```
+
+###### Destroy Post
+```
+mutation {
+  destroyPost(input:
+    {
+      id: ID,
+    }
+  )
+  {
+    post{
+      id,
+      text,
+      latitude,
+      longitude,
+      ringMinMax,
+      createdAt,
+      userId
+    }
+  }
+}
+```
 
 ## Technologies
 - Ruby
@@ -141,5 +288,4 @@ query(id: 19) {
 - PostgreSQL
 - RSpec
 - TravisCI
-
-## Roadmap
+- Heroku
