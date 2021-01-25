@@ -106,7 +106,7 @@ mutation {
   }
 }
 ```
-######Edit User
+###### Edit User
 ```
 mutation {
   editUser(input:{
@@ -123,7 +123,7 @@ mutation {
   }
 }
 ```
-######Destroy User
+###### Destroy User
 ```
 mutation {
   destroyUser(input:{
