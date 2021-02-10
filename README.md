@@ -21,7 +21,7 @@ This repo is the back-end service for Saturn'd Earth and is consumed by our fron
 
 ## Contributors
 - Back-End Team:
-  - Alex Desjardins | [GitHub](https://github.com/moosehandlr) | [LinkedIn](https://www.linkedin.com/in/alex-desjardins-59297b8b/) | ardesjardins91@gmail.com
+  - Alex Desjardins | [GitHub](https://github.com/Alex-Desjardins) | [LinkedIn](https://www.linkedin.com/in/alex-desjardins-59297b8b/) | ardesjardins91@gmail.com
   - Garret Gerdsen | [GitHub](https://github.com/ggerdsen) | [LinkedIn](https://www.linkedin.com/in/ggerdsen/) | garrett.gerdsen@gmail.com
   - Drew Williams | [GitHub](https://github.com/drewwilliams5280) | [LinkedIn](https://www.linkedin.com/in/drewwilliams5280/) | drewwilliams5280@gmail.com
 - Front-End Team:
